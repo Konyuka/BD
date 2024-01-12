@@ -6,6 +6,13 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
+import { Head, Link } from '@inertiajs/vue3';
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
+import Notification from "@/Components/Notification.vue";
+import MainLayout from "@/Layouts/MainLayout.vue";
+
+
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
@@ -15,6 +22,11 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .component("Head", Head)
+            .component("Link", Link)
+            .component('VueDatePicker', VueDatePicker)
+            .component("Notification", Notification)
+            .component("MainLayout", MainLayout)
             .mount(el);
     },
     progress: {
