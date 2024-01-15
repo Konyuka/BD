@@ -158,7 +158,7 @@ return [
     ],
 
     'registration' => [
-        'controller' => App\Http\Controllers\Auth\RegisterController::class,
+        'controller' => app\Http\Controllers\Auth\RegisterController::class,
     ],
 
 ];

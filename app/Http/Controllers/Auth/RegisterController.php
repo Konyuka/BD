@@ -8,7 +8,6 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController as FortifyRegister
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -16,6 +15,8 @@ class RegisterController extends FortifyRegisteredUserController
 {
     protected function create(Request $request)
     {
+
+        dd('hi');
         // Add custom validation for the email domain
         Validator::make($request->all(), [
             'email' => [
