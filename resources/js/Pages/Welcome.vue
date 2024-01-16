@@ -116,7 +116,7 @@ defineProps({
                             </h1>
 
                             <div class="mt-10 flex items-center justify-center gap-x-6">
-                                <Link :href="route('register')"
+                                <Link :href="route('login')"
                                     class="rounded-md bg-red-500 px-10 py-2.5 text-xl font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400">Sign
                                     In
                                 </Link>

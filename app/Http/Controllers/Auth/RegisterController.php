@@ -16,7 +16,6 @@ class RegisterController extends FortifyRegisteredUserController
     protected function create(Request $request)
     {
 
-        dd('hi');
         // Add custom validation for the email domain
         Validator::make($request->all(), [
             'email' => [
