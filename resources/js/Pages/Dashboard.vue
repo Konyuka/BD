@@ -26,12 +26,6 @@ const getPosts = (page = 1) => {
             posts.meta = response.data.meta
         });
 }
-const limitTitleCount = (inputString, maxCharacters) => {
-    if (inputString.length > maxCharacters) {
-        return inputString.substring(0, maxCharacters);
-    }
-    return inputString;
-}
 const getFilteredPosts = (page = 1) => {
     axios.post(route('filter.listing'), filter.value, { params: { page } })
         .then((response) => {
@@ -127,10 +121,10 @@ onMounted(() => {
                     class="shadow-xl max-w-full px-5 py-3 bg-white border border-primary rounded-lg dark:bg-secondary dark:border-primary">
                     <div class="flex justify-between w-full">
                         <span class="flex">
-                            <h5 class="line-clamp-1 mb-2 text-md font-bold tracking-tight text-gray-500 dark:text-white">
-                                {{ limitTitleCount(tender.tender_brief, 90) }}</h5>
+                            <h5 class="mb-2 text-md font-bold tracking-tight text-gray-500 dark:text-white">
+                                {{ tender.tender_brief }}</h5>
                         </span>
-                        <span>
+                        <span class="">
                             <button @click="downloadDoc(tender)" type="button"
                                 class="hover:scale-110 duration-500 ease-in-out rounded bg-primary px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-seco focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mr-2">
                                 Download Tender File
