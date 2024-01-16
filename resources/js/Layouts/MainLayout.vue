@@ -30,7 +30,7 @@ const currentMenu = computed(() => {
 
     <div class="min-h-full">
         <header class="bg-primary pb-24">
-            <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+            <div class="mx-auto max-w-[95vw] px-4 sm:px-6 lg:px-8">
                 <div class="relative flex items-center justify-center py-5 lg:justify-between">
                     <!-- Logo -->
                     <div class="absolute left-0 flex-shrink-0 lg:static">
@@ -122,43 +122,50 @@ const currentMenu = computed(() => {
                 </div>
 
                 <div class="hidden border-t border-white border-opacity-20 py-5 lg:block">
-                    <div class="grid grid-cols-3 items-center gap-8">
-                        <div class="col-span-2">
+                    <div class="grid grid-cols-4 items-center gap-8">
+                        <div class="col-span-3">
                             <nav class="flex space-x-4">
                                 <!-- Current: "text-white", Default: "text-indigo-100" -->
                                 <Link :href="route('dashboard')"
                                     :class="[currentMenu == '/dashboard' ? 'bg-secondary' : 'bg-opacity-0']"
                                     class="text-white rounded-md bg-white  px-5 py-2 text-lg font-medium hover:bg-opacity-10 hover:scale-90 duration-700 ease-in-out"
                                     aria-current="page">
-                                Home
+                                Tender Listing
                                 </Link>
 
                                 <Link :href="route('dashboard')"
                                     :class="[currentMenu == '/saved' ? 'bg-secondary' : 'bg-opacity-0']"
                                     class="text-white rounded-md bg-white  px-5 py-2 text-lg font-medium hover:bg-opacity-10 hover:scale-90 duration-700 ease-in-out"
                                     aria-current="page">
-                                PPIP
+                                PPIP Tenders
                                 </Link>
 
                                 <Link :href="route('dashboard')"
                                     :class="[currentMenu == '/saved' ? 'bg-secondary' : 'bg-opacity-0']"
                                     class="text-white rounded-md bg-white  px-5 py-2 text-lg font-medium hover:bg-opacity-10 hover:scale-90 duration-700 ease-in-out"
                                     aria-current="page">
-                                Prequalifications
+                                Tender Prequalifications
                                 </Link>
 
                                 <Link :href="route('dashboard')"
                                     :class="[currentMenu == '/saved' ? 'bg-secondary' : 'bg-opacity-0']"
                                     class="text-white rounded-md bg-white  px-5 py-2 text-lg font-medium hover:bg-opacity-10 hover:scale-90 duration-700 ease-in-out"
                                     aria-current="page">
-                                Notifications
+                                Tender Notifications
                                 </Link>
 
                                 <Link :href="route('dashboard')"
                                     :class="[currentMenu == '/saved' ? 'bg-secondary' : 'bg-opacity-0']"
                                     class="text-white rounded-md bg-white  px-5 py-2 text-lg font-medium hover:bg-opacity-10 hover:scale-90 duration-700 ease-in-out"
                                     aria-current="page">
-                                Saved
+                                Saved Tenders
+                                </Link>
+
+                                <Link :href="route('dashboard')"
+                                    :class="[currentMenu == '/saved' ? 'bg-secondary' : 'bg-opacity-0']"
+                                    class="text-white rounded-md bg-white  px-5 py-2 text-lg font-medium hover:bg-opacity-10 hover:scale-90 duration-700 ease-in-out"
+                                    aria-current="page">
+                                Tender News & Articles
                                 </Link>
 
                             </nav>
@@ -264,13 +271,13 @@ const currentMenu = computed(() => {
         </header>
 
         <main class="-mt-24 pb-8">
-            <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+            <div class="mx-auto max-w-[95vw] px-4 sm:px-6 lg:px-8">
                 <h1 class="sr-only">Page title</h1>
                 <!-- Main 3 column grid -->
-                <div class="grid grid-cols-1 items-start gap-4 lg:grid-cols-3 lg:gap-8">
+                <div class="grid grid-cols-1 items-start gap-4 lg:grid-cols-4 lg:gap-8">
 
                     <!-- Left column -->
-                    <div class="grid grid-cols-1 gap-4 lg:col-span-2">
+                    <div class="grid grid-cols-1 gap-4 lg:col-span-3">
                         <section aria-labelledby="section-1-title">
                             <h2 class="sr-only" id="section-1-title">Section title</h2>
                             <div class="overflow-hidden rounded-lg bg-white shadow min-h-[65vh]">
