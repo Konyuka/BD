@@ -6,29 +6,15 @@ use App\Models\Tender;
 use App\Http\Requests\StoreTenderRequest;
 use App\Http\Requests\UpdateTenderRequest;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
 
 class TenderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreTenderRequest $request)
+    public function importTenders()
     {
         $apiURL = env('TENDER_API_URL');
         $response = Http::timeout(10000000)->get($apiURL);
@@ -54,7 +40,28 @@ class TenderController extends Controller
             }
         }
 
-        return response()->json('Done');
+        return redirect()->route('dashboard')->with('message', 'Tenders loaded successfully');
+    }
+
+    public function downloadTenderFile(Request $request)
+    {
+
+        $fileUrl = $request->link;
+        $tenderId = $request->tenderId;
+        $fileName = 'tenderFiles/' . $tenderId . '.html';
+        $fileContents = file_get_contents($fileUrl);
+        file_put_contents(public_path($fileName), $fileContents);
+
+        return back()->with('File downloaded and stored successfully');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreTenderRequest $request)
+    {
+
+
     }
 
     /**

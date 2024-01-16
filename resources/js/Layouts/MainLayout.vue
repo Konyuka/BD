@@ -1,32 +1,80 @@
 <script setup>
-import { ref, computed } from 'vue';
-import { router } from '@inertiajs/vue3';
+import { ref, computed, watch } from 'vue';
+import { router, usePage } from '@inertiajs/vue3';
 
 defineProps({
     title: String,
 });
+const page = usePage();
+
 
 const showingNavigationDropdown = ref(false);
-
-
 const logout = () => {
-    alert('hi')
     router.post(route('logout'));
 };
-
 const currentYear = computed(() => {
     const currentDate = new Date();
     return currentDate.getFullYear();
 })
-
 const currentMenu = computed(() => {
     return window.location.pathname
+})
+const message = computed(() => {
+    return page.props.message;
+})
+const launchToaster = ref(false)
+watch(message, (newX) => {
+    if (newX) {
+        launchToaster.value = true
+        setTimeout(() => {
+            launchToaster.value = false
+        }, 3000);
+    }
 })
 
 </script>
 
 <template>
     <Head title="Dashboard" />
+
+    <Transition enter-from-class="opacity-0 scale-125" enter-to-class="opacity-100 scale-100"
+        enter-active-class="transition duration-300" leave-active-class="transition duration-200"
+        leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-125">
+        <div v-if="launchToaster" aria-live="assertive"
+            class="z-[1000] pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6">
+            <div class="flex w-full flex-col items-center space-y-4 sm:items-end">
+
+                <div
+                    class="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-black shadow-lg ring-1 ring-black ring-opacity-5">
+                    <div class="p-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div class="ml-3 w-0 flex-1 pt-0.5">
+                                <p class="text-sm font-medium text-white">{{ message }}</p>
+                            </div>
+                            <div class="ml-4 flex flex-shrink-0">
+                                <button @click="launchToaster = false" type="button"
+                                    class="inline-flex rounded-md bg-black text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                    <span class="sr-only">Close</span>
+                                    <svg class="h-5 w-5 text-primary" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true">
+                                        <path
+                                            d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Transition>
 
     <div class="min-h-full">
         <header class="bg-primary pb-24">
@@ -124,7 +172,7 @@ const currentMenu = computed(() => {
                 <div class="hidden border-t border-white border-opacity-20 py-5 lg:block">
                     <div class="grid grid-cols-4 items-center gap-8">
                         <div class="col-span-3">
-                            <nav class="flex space-x-4">
+                            <nav class="flex space-x-4 relative">
                                 <!-- Current: "text-white", Default: "text-indigo-100" -->
                                 <Link :href="route('dashboard')"
                                     :class="[currentMenu == '/dashboard' ? 'bg-secondary' : 'bg-opacity-0']"
@@ -161,11 +209,10 @@ const currentMenu = computed(() => {
                                 Saved Tenders
                                 </Link>
 
-                                <Link :href="route('dashboard')"
-                                    :class="[currentMenu == '/saved' ? 'bg-secondary' : 'bg-opacity-0']"
-                                    class="text-white rounded-md bg-white  px-5 py-2 text-lg font-medium hover:bg-opacity-10 hover:scale-90 duration-700 ease-in-out"
+                                <Link :href="route('get.tenders')"
+                                    class="absolute bg-opacity-0 right-0 text-white rounded-md bg-white  px-5 py-2 text-lg font-medium hover:bg-opacity-10 hover:scale-90 duration-700 ease-in-out"
                                     aria-current="page">
-                                Tender News & Articles
+                                <i class="fa-solid fa-cloud-arrow-down text-3xl"></i>
                                 </Link>
 
                             </nav>
@@ -282,7 +329,9 @@ const currentMenu = computed(() => {
                             <h2 class="sr-only" id="section-1-title">Section title</h2>
                             <div class="overflow-hidden rounded-lg bg-white shadow min-h-[65vh]">
                                 <div class="p-6">
-                                    <!-- Your content -->
+                                    
+                                    <slot />
+
                                 </div>
                             </div>
                         </section>

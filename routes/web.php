@@ -24,6 +24,10 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::get('/get/tenders', [TenderController::class, 'store'])->name('get.tenders');
+    Route::get('/get/tenders', [TenderController::class, 'importTenders'])->name('get.tenders');
+    Route::get('/detail/{id}', [TenderController::class, 'tenderDetails'])->name('tender.details');
+    Route::post('/dashboard/tender/file', [TenderController::class, 'downloadTenderFile'])->name('download.tender.file');
+
+
 
 });

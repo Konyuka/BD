@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::middleware([
+    // 'auth:sanctum',
+    config('jetstream.auth_session'),
+    // 'verified',
+])->group(function () {
+    Route::get('/tender/listing', [ApiController::class, 'tenderListing'])->name('tender.listing');
+    Route::post('filter/tender/listing', [ApiController::class, 'filterListing'])->name('filter.listing');
+});
+

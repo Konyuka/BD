@@ -9,7 +9,6 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import { Head, Link } from '@inertiajs/vue3';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
-import Notification from "@/Components/Notification.vue";
 import MainLayout from "@/Layouts/MainLayout.vue";
 
 
