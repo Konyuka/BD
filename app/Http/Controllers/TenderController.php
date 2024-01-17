@@ -6,7 +6,7 @@ use App\Models\Tender;
 use App\Http\Requests\StoreTenderRequest;
 use App\Http\Requests\UpdateTenderRequest;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class TenderController extends Controller
@@ -45,6 +45,7 @@ class TenderController extends Controller
 
     public function downloadTenderFile(Request $request)
     {
+
 
         $fileUrl = $request->link;
         $tenderId = $request->tenderId;

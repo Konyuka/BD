@@ -175,8 +175,8 @@ watch(message, (newX) => {
                             <nav class="flex space-x-4 relative">
                                 <!-- Current: "text-white", Default: "text-indigo-100" -->
                                 <Link :href="route('dashboard')"
-                                    :class="[currentMenu == '/dashboard' ? 'bg-secondary' : 'bg-opacity-0']"
-                                    class="text-white rounded-md bg-white  px-5 py-2 text-lg font-medium hover:bg-opacity-10 hover:scale-90 duration-700 ease-in-out"
+                                    :class="[currentMenu == '/dashboard' ? 'bg-white text-black' : 'bg-opacity-0 bg-white']"
+                                    class="rounded-md  px-5 py-2 text-lg font-medium hover:bg-opacity-10 hover:scale-90 duration-700 ease-in-out"
                                     aria-current="page">
                                 Tender Listing
                                 </Link>
@@ -344,6 +344,9 @@ watch(message, (newX) => {
                             <div class="overflow-hidden rounded-lg bg-white shadow min-h-[65vh]">
                                 <div class="p-6">
                                     <!-- Your content -->
+
+
+                                    
                                 </div>
                             </div>
                         </section>

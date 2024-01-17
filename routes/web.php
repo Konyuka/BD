@@ -29,5 +29,4 @@ Route::middleware([
     Route::post('/dashboard/tender/file', [TenderController::class, 'downloadTenderFile'])->name('download.tender.file');
 
 
-
 });

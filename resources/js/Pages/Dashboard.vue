@@ -89,8 +89,8 @@ const downloadDoc = async (tender) => {
     }, {
         onSuccess: () => {
             const downloadLink = document.createElement('a');
-            downloadLink.href = '/tenderFiles/' + props.tender.id + '.html';
-            const combinedSentence = props.tender.tender_brief.split(' ').join('-');
+            downloadLink.href = '/tenderFiles/' + tender.id + '.html';
+            const combinedSentence = tender.tender_brief.split(' ').join('-');
             downloadLink.download = combinedSentence + '.html';
             downloadLink.click();
         }
@@ -124,7 +124,7 @@ onMounted(() => {
                             <h5 class="mb-2 text-md font-bold tracking-tight text-gray-500 dark:text-white">
                                 {{ tender.tender_brief }}</h5>
                         </span>
-                        <span class="">
+                        <span class="flex-shrink-0">
                             <button @click="downloadDoc(tender)" type="button"
                                 class="hover:scale-110 duration-500 ease-in-out rounded bg-primary px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-seco focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mr-2">
                                 Download Tender File
@@ -145,7 +145,8 @@ onMounted(() => {
                                     formatTime(reverseDate(tender.expiry)) }}</span></p> -->
                             <p>Fund Type: <span class="font-semibold italic ml-2 text-purple-500">{{ tender.funded_by
                             }}</span></p>
-                            <p>Tender Number: <span class="font-semibold italic ml-2 text-purple-500">{{ tender.tender_number
+                            <p>Tender Number: <span class="font-semibold italic ml-2 text-purple-500">{{
+                                tender.tender_number
                             }}</span></p>
                             <p>Contact Mail: <span class="font-semibold italic ml-2 text-purple-500">{{ tender.email
                             }}</span></p>
